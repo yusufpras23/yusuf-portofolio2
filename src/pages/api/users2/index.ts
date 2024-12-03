@@ -15,27 +15,32 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
                 }
                 
                 if( body.name == ""){
-                    throw new Error('title is required')
+                    throw new Error('name is required')
                 }
 
-                if( body.subTitle == ""){
-                    throw new Error('subTitle is required')
+                if( body.phone == ""){
+                    throw new Error('phone is required')
                 }
 
-                if( body.content == ""){
-                    throw new Error('content is required')
+
+                if( body.email == ""){
+                    throw new Error('email is required')
                 }
 
-                let blogs = await db.collection("blogs").insertOne(body);
-                res.status(200).json({ data: blogs, message:'data berhasil di simpan' });
+                if( body.status == ""){
+                    throw new Error('status is required')
+                }
+
+                let users2 = await db.collection("users2").insertOne(body);
+                res.status(200).json({ data: users2, message:'data berhasil di simpan' });
 
             }catch(err){
                 res.status(422).json({ message: err.message});
             }
             break;
         default:
-            const blogsData = await db.collection("blogs").find({}).toArray();
-            res.json({ data: blogsData });
+            const users2Data = await db.collection("users2").find({}).toArray();
+            res.json({ data: users2Data });
         break;
     }
 }
