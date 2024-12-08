@@ -4,17 +4,17 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import ConfigDialog from '../../../../components/ConfirmDialog'
 
-export default function AdminUsers2() {
+export default function AdminUsers() {
     const router = useRouter();
     const [modal, setModal] = useState(false)
     const [modalTitle, setModalTitle] = useState("")
     const [modalMessage, setModalMessage] = useState("")
-    const [users2, setBologs] = useState([])
+    const [users, setBologs] = useState([])
     const [isOkOnly, setIsOkOnly] = useState(true)
     const [deleteId, setDeleteId] = useState(null)
 
     const onAddNew = ()=>{
-        router.push('/admin/users2/form')
+        router.push('/admin/users/form')
     }
 
     const onConfirmDelete=(id)=>{
@@ -31,7 +31,7 @@ export default function AdminUsers2() {
 
     const onConfirmOk=async ()=>{
         try{
-            const res = await fetch(`/api/users2/${deleteId}`,{method:'DELETE'});
+            const res = await fetch(`/api/users/${deleteId}`,{method:'DELETE'});
             let responseData = await res.json()
 
             setIsOkOnly(true)
@@ -50,7 +50,7 @@ export default function AdminUsers2() {
 
     const fetchData = async ()=>{
         try{
-            const res = await fetch('/api/users2');
+            const res = await fetch('/api/users');
             let responseData = await res.json()
             setBologs(responseData.data)
 
@@ -63,7 +63,7 @@ export default function AdminUsers2() {
     }
 
     const gotoEditPage=(id)=>{
-        router.push(`/admin/users2/${id}`)
+        router.push(`/admin/users/${id}`)
     }
 
     useEffect(()=>{
@@ -85,7 +85,7 @@ export default function AdminUsers2() {
                     </tr>
                 </thead>
                 <tbody>
-                    { users2.map((item, key)=>{
+                    { users.map((item, key)=>{
                         return (
                             <tr key={key} className='border-b border-blue-gray-50 '>
                                 <td className='p-2 text-center'>{key+1}</td>

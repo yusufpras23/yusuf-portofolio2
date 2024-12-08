@@ -31,16 +31,16 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
                     throw new Error('status is required')
                 }
 
-                let users2 = await db.collection("users2").insertOne(body);
-                res.status(200).json({ data: users2, message:'data berhasil di simpan' });
+                let users = await db.collection("users").insertOne(body);
+                res.status(200).json({ data: users, message:'data berhasil di simpan' });
 
             }catch(err){
                 res.status(422).json({ message: err.message});
             }
             break;
         default:
-            const users2Data = await db.collection("users2").find({}).toArray();
-            res.json({ data: users2Data });
+            const usersData = await db.collection("users").find({}).toArray();
+            res.json({ data: usersData });
         break;
     }
 }

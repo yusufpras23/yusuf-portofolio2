@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from 'react';
 import ConfigDialog from '../../../../../components/ConfirmDialog'
 import { Editor } from '@tinymce/tinymce-react';
 
-export default function EditUsers2() {
+export default function EditUsers() {
     const router= useRouter()
     const editorRef = useRef(null);
     const params = useParams()
@@ -24,7 +24,7 @@ export default function EditUsers2() {
 
     const fetDataById = async ()=>{
         try{
-            const res = await fetch(`/api/users2/${params.id}`);
+            const res = await fetch(`/api/users/${params.id}`);
             let responseData = await res.json()
             setData(responseData.data)
 
@@ -42,7 +42,7 @@ export default function EditUsers2() {
 
     const onOkOnly=()=>{
         setModal(false)
-        router.push('/admin/users2')
+        router.push('/admin/users')
     }
 
     const inputHandler= (e) =>{
@@ -55,7 +55,7 @@ export default function EditUsers2() {
                 const body = data
                 body.content = editorRef.current.getContent();
 
-                let res = await fetch(`/api/users2/${data._id}`, {
+                let res = await fetch(`/api/users/${data._id}`, {
                     method:'PUT',
                     body: JSON.stringify(body),
                 })

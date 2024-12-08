@@ -23,17 +23,17 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
                     },
                   };
                 console.log('filter',filter)
-                const users2 = await db.collection("users2")
+                const users = await db.collection("users")
                         .updateOne(filter, updateDoc, { upsert: true })
 
-                res.status(200).json({data:[users2], message: 'data berhasil di perbaharui'});
+                res.status(200).json({data:[users], message: 'data berhasil di perbaharui'});
             }catch(err){
                 res.status(422).json({ message: err.message});
             }
         break;
         case "DELETE":
             try{
-                const resDelete = await db.collection("users2").deleteOne({
+                const resDelete = await db.collection("users").deleteOne({
                     _id: id
                 })
 
@@ -47,7 +47,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
             }
         break;
         default:
-            const education = await db.collection("users2")
+            const education = await db.collection("users")
                 .findOne({ _id: id })
             res.json({ data: education });
         break;

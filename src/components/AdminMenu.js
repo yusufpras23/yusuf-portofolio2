@@ -36,7 +36,7 @@ export default function AdminMenu() {
                       <a className="btn-link" href="/admin/blogs">Blogs</a>
                     </li>
                     <li className="mt-1">
-                      <a className="btn-link" href="/admin/users2">Users</a>
+                      <a className="btn-link" href="/admin/users">Users</a>
                     </li>
                     <li>
                         <button  className="btn-primary" onClick={onLogOut}>
