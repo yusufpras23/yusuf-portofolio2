@@ -14,7 +14,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
                     throw new Error('invalid request')
                 }
                 
-                if( body.name == ""){
+                if( body.title == ""){
                     throw new Error('title is required')
                 }
 
