@@ -32,7 +32,7 @@ export default function Work() {
             href="#"
             className="text-blue-500 hover:text-blue-700 font-medium"
           >
-            View Project →
+            View Project → →
           </a>
         </div>
 
